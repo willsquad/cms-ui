@@ -1,0 +1,178 @@
+@import 'base/variables';
+@import 'base/bootstrap_variables';
+@import 'mixins/breakpoints';
+
+
+/* ANIMATIONS  */
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+}
+  
+.fadeIn {
+    animation-name: fadeIn;
+}
+
+@keyframes rotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    -webkit-animation: rotating 2s linear infinite;
+    -moz-animation: rotating 2s linear infinite;
+    -ms-animation: rotating 2s linear infinite;
+    -o-animation: rotating 2s linear infinite;
+    animation: rotating 2s linear infinite;
+}
+/* ANIMATIONS  */
+
+/* Misc Styles  */
+input {
+    font-family: "open sans" !important;
+    font-size: 15px;
+}
+
+img {
+    max-width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+i {
+    vertical-align: middle;
+}
+
+/* Misc Styles  */
+
+
+body {
+    background-color: #ECECEC;
+    font-family: "open sans" !important;
+    &.overlay_applied {
+        overflow-y: hidden;
+    }
+    user-select: none;
+    @include media-breakpoint-down(xs){
+        padding-top: 15px;
+    }
+}
+
+/* LHS  */
+#ui_lhs {
+    background-color: #313541;
+    height: 100vh;
+    color: #fff;
+    padding: 0px;
+    #lhs_top_div {
+        height: 90px;
+        padding: 15px;
+    }
+    #lhs_menu_content_div {
+        height: 50vh;
+        background-color: #3B404F;
+        padding: 15px;
+    }
+}
+/* LHS  */
+
+
+/* RHS  */
+#ui_rhs{
+    padding: 0px;
+    #rhs_top_bar{
+        height: 90px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .heading {
+            font-size: 22px;
+            font-weight: 700;
+            text-transform: uppercase;
+            word-spacing: 2px;
+        }
+    }
+    #rhs_content_div {
+        margin: 20px;
+        height: calc(100vh - 130px);
+        background-color: #fff;
+        overflow: auto;
+
+        #rhs_cms_div {
+            padding: 0px;
+
+            #cms_title_div{
+                min-height: 90px;
+                border:none;
+                outline: none;
+                padding: 25px 30px;
+                font-size: 24px;
+                font-family: lora;
+                display: block;
+                font-weight: 600;
+                &:empty:before{
+                    content: attr(data-placeholder2);
+                    display: block; // For Firefox
+                    color: #888;
+                    font-size: 18px;
+                    position: relative;
+                    top: 5px;
+                    font-weight: 400;
+                    font-family: "open sans";
+                }
+            }
+            #editor_div{
+                #editor_tools{
+                    height: 50px;
+                    background-color: #FBFBFB;
+                }
+                #editor_input {
+                    min-height: calc(100vh - 270px);
+                    border:none;
+                    outline: none;
+                    padding: 25px 30px;
+                    line-height: 1.75em;
+                    font-family: lora;
+                    font-size: 20px;
+                    &:empty:before{
+                        content: attr(data-placeholder2);
+                        display: block; // For Firefox
+                        color: #888;
+                        font-size: 18px;
+                        position: relative;
+                        top: 5px;
+                        font-weight: 400;
+                        font-family: "open sans";
+                    }
+                }
+            }
+            
+        }
+    }
+}
+/* RHS  */

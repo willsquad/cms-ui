@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>CMS UI</title>
+    <link rel="stylesheet" href="_files/css/bootstrap.css">
+    <link rel="stylesheet" href="_files/css/style.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Lora" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Start of LHS -->
+            <div id="ui_lhs" class="col-12 col-sm-4 col-lg-3 col-xl-2 hidden-xs-down">
+                <div id="lhs_top_div">
+                </div>
+                <div id="lhs_menu_content_div">
+                </div>
+            </div>
+            <!-- End of LHS -->
+
+            <!-- Start of LHS XS -->
+            <div id="ui_lhs_xs_container" class="col-12 hidden-sm-up">
+
+            </div>
+            <!-- End of LHS XS -->
+
+            <!-- Start of RHS -->
+            <div id="ui_rhs" class="col-12 col-sm-8 col-lg-9 col-xl-10 animated fadeIn">
+                <div id="rhs_top_bar">
+                    <div class="heading">Add New Post</div>
+                </div>
+
+                <div id="rhs_content_div">
+                    <div id="rhs_cms_div" class="col-12">
+                        <div id="cms_title_div" contenteditable="true" data-placeholder2="Enter title here"></div>
+
+                        <div id="editor_div">
+                            <div id="editor_tools">
+
+                            </div>
+                            <div id="editor_input" class="textarea" contenteditable="true" data-placeholder2="content"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End of RHS -->
+        </div>
+    </div>
+
+</body>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="_files/js/main.js"></script>
+<script src="_files/js/jquery.toTextarea.min.js"></script>
+
+</html>
