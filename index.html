@@ -2,14 +2,12 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>CMS UI</title>
     <link rel="stylesheet" href="files/css/bootstrap.css">
+    <link rel="stylesheet" href="files/css/nice-select.css">
     <link rel="stylesheet" href="files/css/style.css">
-
-    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Lora" rel="stylesheet">
 </head>
 
@@ -36,18 +34,124 @@
             <div id="ui_rhs" class="col-12 col-sm-8 col-lg-9 col-xl-10">
                 <div id="rhs_top_bar">
                     <div class="heading">Add New Post</div>
+                    <div class="sidebar_menu_button">
+                        <i class="fas fa-bars"></i>
+                    </div>
                 </div>
 
                 <div id="rhs_content_div" class="animated fadeIn">
                     <div id="rhs_cms_div" class="col-12">
                         <div id="cms_title_div" contenteditable="true" data-placeholder2="Enter title here"></div>
+                        <!-- NO empty spaces. Important!  -->
 
+                        <!-- CONTENT EDITOR DIV -->
                         <div id="editor_div">
                             <div id="editor_tools">
 
+                                <div id="tools_lhs">
+                                    <div class="editor_tool_div">
+                                        <span>Size:</span>
+                                        <select name="font_family" id="editor_font_size_select">
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16" selected="selected">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                            <option value="19">19</option>
+                                            <option value="20">20</option>
+                                            <option value="21">21</option>
+                                            <option value="22">22</option>
+                                            <option value="23">23</option>
+                                            <option value="24">24</option>
+                                            <option value="25">25</option>
+                                            <option value="26">26</option>
+                                            <option value="27">27</option>
+                                            <option value="28">28</option>
+                                            <option value="29">29</option>
+                                            <option value="30">30</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- <div class="editor_tool_div hidden-md-down">
+                                        <span>Weight:</span>
+                                        <select name="font_weight" id="editor_font_weight_select">
+                                            <option value="light">Light</option>
+                                            <option value="regular">Regular</option>
+                                            <option value="semi-bold">Semi-Bold</option>
+                                            <option value="bold">Bold</option>
+                                        </select>
+                                    </div> -->
+
+                                    <div class="editor_tool_div_icons_container">
+                                            <div class="editor_tool_div_icons bold_icon" title="Media">
+                                                <i class="fas fa-bold fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons" title="Link">
+                                                <i class="fas fa-italic fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons" title="Quote">
+                                                <i class="fas fa-underline fa-fw"></i>
+                                            </div>
+                                        </div>
+
+                                    <div class="editor_tool_div_icons_container">
+                                        <div class="editor_tool_div_icons" title="Media">
+                                            <i class="far fa-image fa-fw"></i>
+                                        </div>
+                                        <div class="editor_tool_div_icons" title="Link">
+                                            <i class="fas fa-link fa-fw"></i>
+                                        </div>
+                                        <div class="editor_tool_div_icons" title="Quote">
+                                            <i class="fas fa-quote-left fa-fw"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="editor_tool_div_icons_container hidden-md-down">
+                                        <div class="editor_tool_div_icons align_icons" title="Left Align">
+                                            <i class="fas fa-align-left fa-fw"></i>
+                                        </div>
+                                        <div class="editor_tool_div_icons align_icons" title="Center Align">
+                                            <i class="fas fa-align-center fa-fw"></i>
+                                        </div>
+                                        <div class="editor_tool_div_icons align_icons" title="Right Align">
+                                            <i class="fas fa-align-right fa-fw"></i>
+                                        </div>
+                                        <div class="editor_tool_div_icons align_icons" title="Justify">
+                                            <i class="fas fa-align-justify fa-fw"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div id="tools_rhs">
+                                    <div class="editor_tool_div_icons_container">
+                                        <div class="editor_tool_div_icons" title="Fullscreen">
+                                            <i class="fas fa-expand fa-fw"></i>
+                                        </div>
+                                        <div class="editor_tool_div_icons" title="Delete">
+                                            <i class="far fa-trash-alt fa-fw"></i>
+                                        </div>
+                                        <div class="editor_tool_div_icons" title="Save">
+                                            <i class="fas fa-save fa-fw"></i>
+                                        </div>
+                                        <div class="editor_tool_div_icons" title="Publish">
+                                            <i class="fas fa-paper-plane fa-fw"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div id="editor_input" class="textarea" contenteditable="true" data-placeholder2="content"></div>
+                            
+                            <div id="editor_input" class="textarea" contenteditable="true" data-placeholder2="Add content"></div>
+                            <!-- NO empty spaces. Important!  -->
                         </div>
+                        <!-- CONTENT EDITOR DIV -->
                     </div>
                 </div>
 
@@ -60,6 +164,6 @@
 <script defer src="//use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="files/js/main.js"></script>
-<script src="files/js/jquery.toTextarea.min.js"></script>
+<script src="files/js/ta_ns_combo.js"></script>
 
 </html>
