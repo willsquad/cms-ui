@@ -29,10 +29,51 @@ $(document).ready(function(){
       });
 
     // Bold icon toggle
-    $('#editor_input').keyup("b",function(e) {
-        if(e.ctrlKey){
-            $('.bold_icon').toggleClass('active');
+    $('#editor_input').keydown(function(e) {
+        /* var key = e.which;
+        if (key == 66 && (e.ctrlKey == true || e.metaKey == true)) {
+            $('#bold_icon').toggleClass('active');
+        } 
+ */
+        var key = (e.keyCode ? e.keyCode : e.which);
+
+        if (key == 66) { // B
+            if (e.ctrlKey || e.metaKey) {
+                $('#bold_icon').toggleClass('active');
+            }
+        } else if(key == 73) { // I
+            if (e.ctrlKey || e.metaKey) {
+                $('#italic_icon').toggleClass('active');
+            }
+        } else if(key == 85) { //U
+            if (e.ctrlKey || e.metaKey) {
+                $('#underline_icon').toggleClass('active');
+            }
         }
+    });
+
+   $("#bold_icon").on('click', function(){
+       
+        $('#bold_icon').toggleClass('active');
+        $('#editor_input').focus();
+
+         // place this within dom ready function
+        function trigger_keypress() {     
+            var e = jQuery.Event("keydown");
+            e.which = 66; // # Some key code value
+            e.ctrlKey = true;
+            $("#editor_input").trigger(e); 
+            console.log(e);
+        }
+
+        // use setTimeout() to execute
+        setTimeout(trigger_keypress, 500)
+
+        /* var e = jQuery.Event("keydown");
+        e.which = 66; // # Some key code value
+        e.ctrlKey = true;
+        $("#editor_input").trigger(e); */
+        
     });
 
       

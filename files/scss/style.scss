@@ -155,9 +155,12 @@ body {
                 }
             }
             #editor_div{
+
+                $tool_bg_color:  #f7f7f7; //#FBFBFB;
+
                 #editor_tools{
                     height: 50px;
-                    background-color: #FBFBFB;
+                    background-color: $tool_bg_color;
                     display: flex;
                     align-items: center;
                     padding: 0px 30px;
@@ -165,11 +168,11 @@ body {
 
                     #tools_lhs{
                         display: flex;
-                        background-color: #FBFBFB;
+                        background-color: $tool_bg_color;
                     }
 
                     #tools_rhs {
-                        background-color: #FBFBFB;
+                        background-color: $tool_bg_color;
                         .editor_tool_div_icons_container {
                             border-right: none;
                             //border-left: 1px solid #DBDBDB;
@@ -192,7 +195,8 @@ body {
                         outline: none;
                         /* padding-left: 15px; */
                         padding-right: 30px;
-                        background-color: #FBFBFB;
+                        //background-color: #FBFBFB;
+                        background-color: $tool_bg_color;
                         border: none;
                         font-size: 13px;
                         &:after {
