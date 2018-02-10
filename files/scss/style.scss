@@ -227,6 +227,9 @@ body {
                         border-right: 1px solid #DBDBDB;
                         margin-left: 15px;
                         margin-right: 15px;
+                        #upload_img_file {
+                            display: none !important;
+                        }
                     }
                     .editor_tool_div_icons {
                         font-size: 14px;
@@ -263,6 +266,19 @@ body {
                         top: 5px;
                         font-weight: 300;
                         font-family: "open sans";
+                    }
+
+                    &.align_left{
+                        text-align: left;
+                    }
+                    &.align_center{
+                        text-align: center;
+                    }
+                    &.align_right{
+                        text-align: right;
+                    }
+                    &.align_justify{
+                        text-align: justify;
                     }
                 }
             }
