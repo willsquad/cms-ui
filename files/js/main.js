@@ -3,7 +3,7 @@ $(document).ready(function(){
         var editable = $(this);
     });
 
-    $("#cms_title_div").toTextarea({
+    /* $("#cms_title_div").toTextarea({
         allowHTML: false,//allow HTML formatting with CTRL+b, CTRL+i, etc.
         allowImg: false,//allow drag and drop images
         singleLine: false,//make a single line so it will only expand horizontally
@@ -17,7 +17,7 @@ $(document).ready(function(){
         singleLine: false,//make a single line so it will only expand horizontally
         pastePlainText: true,//paste text without styling as source
         placeholder: false//a placeholder when no text is entered. This can also be set by a placeholder="..." or data-placeholder="..." attribute
-      });
+      }); */
 
       //initialize niceSelect
       $('select').niceSelect();
@@ -29,7 +29,7 @@ $(document).ready(function(){
       });
 
     // Bold icon toggle
-    $('#editor_input').on('keydown.toTextarea', function(e) {
+    $('#editor_input').on('keydown', function(e) {
         /* var key = e.which;
         if (key == 66 && (e.ctrlKey == true || e.metaKey == true)) {
             $('#bold_icon').toggleClass('active');
@@ -40,17 +40,14 @@ $(document).ready(function(){
         if (key == 66) { // B
             if (e.ctrlKey || e.metaKey) {
                 $('#bold_icon').toggleClass('active');
-                alert("Ctrl + B was pressed!!");
             }
         } else if(key == 73) { // I
             if (e.ctrlKey || e.metaKey) {
                 $('#italic_icon').toggleClass('active');
-                alert("Ctrl + I was pressed!!");
             }
         } else if(key == 85) { //U
             if (e.ctrlKey || e.metaKey) {
                 $('#underline_icon').toggleClass('active');
-                alert("Ctrl + U was pressed!!");
             }
         }
     });
@@ -58,14 +55,12 @@ $(document).ready(function(){
    $("#bold_icon").on('click', function() {
        
         $('#bold_icon').toggleClass('active');
+        $('#editor_input').blur();
         $('#editor_input').focus();
 
          // place this within dom ready function
         function trigger_keypress() {     
-            var e = jQuery.Event("keydown");
-            e.which = 66; // # Some key code value
-            e.ctrlKey = true;
-            $("#editor_input").trigger(e);
+            document.execCommand('bold',false,null);
         }
 
         // use setTimeout() to execute
@@ -78,10 +73,7 @@ $(document).ready(function(){
 
          // place this within dom ready function
         function trigger_keypress() {     
-            var e = jQuery.Event("keydown");
-            e.which = 73; // # Some key code value
-            e.ctrlKey = true;
-            $("#editor_input").trigger(e);
+            document.execCommand('italic',false,null);
         }
 
         // use setTimeout() to execute
@@ -94,10 +86,7 @@ $(document).ready(function(){
 
          // place this within dom ready function
         function trigger_keypress() {     
-            var e = jQuery.Event("keydown");
-            e.which = 85; // # Some key code value
-            e.ctrlKey = true;
-            $("#editor_input").trigger(e);
+            document.execCommand('underline',false,null);
         }
 
         // use setTimeout() to execute
@@ -113,21 +102,25 @@ $(document).ready(function(){
                 return (className.match (/(^|\s)align_\S+/g) || []).join(' ');
             });
             $('#editor_input').addClass('align_left');
+            $('#editor_input').attr('data-align', 0);
         } else if (data == 1) {
             $('#editor_input').removeClass(function (index, className) { // Remove all classes starting with 'align_'
                 return (className.match (/(^|\s)align_\S+/g) || []).join(' ');
             });
             $('#editor_input').addClass('align_center');
+            $('#editor_input').attr('data-align', 1);
         } else if (data == 2) {
             $('#editor_input').removeClass(function (index, className) { // Remove all classes starting with 'align_'
                 return (className.match (/(^|\s)align_\S+/g) || []).join(' ');
             });
             $('#editor_input').addClass('align_right');
+            $('#editor_input').attr('data-align', 2);
         } else if (data == 3) {
             $('#editor_input').removeClass(function (index, className) { // Remove all classes starting with 'align_'
                 return (className.match (/(^|\s)align_\S+/g) || []).join(' ');
             });
             $('#editor_input').addClass('align_justify');
+            $('#editor_input').attr('data-align', 3);
         }
     });
 
@@ -135,6 +128,38 @@ $(document).ready(function(){
         $(this).closest('.editor_tool_div_icons_container').find('#upload_img_file').click();
     });
 
+    /** Change Font-size **/   
+    $(document).on('change', '#editor_font_size_select', function() {
+        
+        var size_value=$(this).val();
+        $('#editor_input').css('font-size', size_value+'px');
+    });
+
+    /* Toggle fullscreen  */
+    $('#toggle_fullscreen').on('click', function(){
+
+        var self = $(this);
+        self.toggleClass('active');
+
+        if ((document.fullScreenElement && document.fullScreenElement !== null) ||    
+        (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+         if (document.documentElement.requestFullScreen) {  
+           document.documentElement.requestFullScreen();  
+         } else if (document.documentElement.mozRequestFullScreen) {  
+           document.documentElement.mozRequestFullScreen();  
+         } else if (document.documentElement.webkitRequestFullScreen) {  
+           document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);  
+         }  
+       } else {  
+         if (document.cancelFullScreen) {  
+           document.cancelFullScreen();  
+         } else if (document.mozCancelFullScreen) {  
+           document.mozCancelFullScreen();  
+         } else if (document.webkitCancelFullScreen) {  
+           document.webkitCancelFullScreen();  
+         }  
+       }  
+    });
       
      
 });
