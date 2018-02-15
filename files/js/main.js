@@ -53,47 +53,68 @@ $(document).ready(function(){
     });
 
    $("#bold_icon").on('click', function() {
-       
+
+    
         $('#bold_icon').toggleClass('active');
         $('#editor_input').blur();
         $('#editor_input').focus();
-
-         // place this within dom ready function
-        function trigger_keypress() {     
-            document.execCommand('bold',false,null);
+        
+        
+        if (document.activeElement.id == "editor_input") {
+            function trigger_keypress() {     
+                document.execCommand('bold',false,null);
+            }
+            // use setTimeout() to execute
+            setTimeout(trigger_keypress, 100); 
         }
 
-        // use setTimeout() to execute
-        setTimeout(trigger_keypress, 100); 
+       
     });
    $("#italic_icon").on('click', function() {
        
         $('#italic_icon').toggleClass('active');
         $('#editor_input').focus();
 
-         // place this within dom ready function
-        function trigger_keypress() {     
-            document.execCommand('italic',false,null);
+        if (document.activeElement.id == "editor_input") {
+            // place this within dom ready function
+            function trigger_keypress() {     
+                document.execCommand('italic',false,null);
+            }
+            // use setTimeout() to execute
+            setTimeout(trigger_keypress, 100); 
         }
-
-        // use setTimeout() to execute
-        setTimeout(trigger_keypress, 100); 
     });
    $("#underline_icon").on('click', function() {
        
         $('#underline_icon').toggleClass('active');
         $('#editor_input').focus();
 
-         // place this within dom ready function
-        function trigger_keypress() {     
-            document.execCommand('underline',false,null);
+        if (document.activeElement.id == "editor_input") {
+            // place this within dom ready function
+            function trigger_keypress() {     
+                document.execCommand('underline',false,null);
+            }
+            // use setTimeout() to execute
+            setTimeout(trigger_keypress, 100);
         }
-
-        // use setTimeout() to execute
-        setTimeout(trigger_keypress, 100); 
     });
 
-    $('.align_icons').on('click', function() {
+    $("#strikethrough_icon").on('click', function() {
+       
+        $('#strikethrough_icon').toggleClass('active');
+        $('#editor_input').focus();
+
+        if (document.activeElement.id == "editor_input") {
+            // place this within dom ready function
+            function trigger_keypress() {     
+                document.execCommand('strikeThrough',false,null);
+            }
+            // use setTimeout() to execute
+            setTimeout(trigger_keypress, 100);
+        }
+    });
+
+    /* $('.align_icons').on('click', function() {
         var self = $(this);
         var data = self.attr('data-align');
 
@@ -122,11 +143,11 @@ $(document).ready(function(){
             $('#editor_input').addClass('align_justify');
             $('#editor_input').attr('data-align', 3);
         }
-    });
+    }); */
 
-    $(document).on('click', '#upload_image', function() {
+    /* $(document).on('click', '#upload_image', function() {
         $(this).closest('.editor_tool_div_icons_container').find('#upload_img_file').click();
-    });
+    }); */
 
     /** Change Font-size **/   
     $(document).on('change', '#editor_font_size_select', function() {
@@ -141,25 +162,69 @@ $(document).ready(function(){
         var self = $(this);
         self.toggleClass('active');
 
-        if ((document.fullScreenElement && document.fullScreenElement !== null) ||    
-        (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+        if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
          if (document.documentElement.requestFullScreen) {  
            document.documentElement.requestFullScreen();  
+            $('#ui_lhs').addClass('hidden-xs-up');
+            $('#ui_rhs').css('min-width', '100%');
          } else if (document.documentElement.mozRequestFullScreen) {  
            document.documentElement.mozRequestFullScreen();  
+            $('#ui_lhs').addClass('hidden-xs-up');
+            $('#ui_rhs').css('min-width', '100%');
          } else if (document.documentElement.webkitRequestFullScreen) {  
            document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);  
+            $('#ui_lhs').addClass('hidden-xs-up');
+            $('#ui_rhs').css('min-width', '100%');
          }  
+
+         /* $('#ui_lhs').addClass('hidden-xs-up');
+         $('#ui_rhs').css('min-width', '100%'); */
        } else {  
          if (document.cancelFullScreen) {  
            document.cancelFullScreen();  
+            $('#ui_lhs').removeClass('hidden-xs-up');
+            $('#ui_rhs').css('min-width', 'auto');
          } else if (document.mozCancelFullScreen) {  
            document.mozCancelFullScreen();  
+            $('#ui_lhs').removeClass('hidden-xs-up');
+            $('#ui_rhs').css('min-width', 'auto');
          } else if (document.webkitCancelFullScreen) {  
            document.webkitCancelFullScreen();  
+            $('#ui_lhs').removeClass('hidden-xs-up');
+            $('#ui_rhs').css('min-width', 'auto');
          }  
+
+         /* $('#ui_lhs').removeClass('hidden-xs-up');
+         $('#ui_rhs').css('min-width', 'auto'); */
        }  
     });
+
+    /* Tools icon click  */
+    $('.tool_icons_click_js').on('click', function(){
+
+        //var self = $(this);
+
+
+        var command = $(this).data('command');
+
+        $('#editor_input').focus();
+
+
+        if (command == 'h1' || command == 'h2' || command == 'p') {
+          document.execCommand('formatBlock', false, command);
+        }
+        if (command == 'forecolor' || command == 'backcolor') {
+          document.execCommand($(this).data('command'), false, $(this).data('value'));
+        }
+        if (command == 'createlink' || command == 'insertimage') {
+          url = prompt('Enter the link here: ', 'http:\/\/');
+          document.execCommand($(this).data('command'), false, url);
+        } 
+        else {
+            document.execCommand($(this).data('command'), false, null);
+        }
+    });
+    /* Tools icon click  */
       
      
 });
