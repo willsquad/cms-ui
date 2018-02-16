@@ -114,6 +114,16 @@ $(document).ready(function(){
         }
     });
 
+    $("#blockquote_icon").on('click', function() {
+
+        if(!$(this).hasClass('active')){
+
+        } else {
+
+        }   
+       
+    });
+
     /* $('.align_icons').on('click', function() {
         var self = $(this);
         var data = self.attr('data-align');
@@ -210,21 +220,160 @@ $(document).ready(function(){
         $('#editor_input').focus();
 
 
-        if (command == 'h1' || command == 'h2' || command == 'p') {
+        if (command == 'h1' || command == 'h2' || command == 'p' || command == 'blockquote') {
           document.execCommand('formatBlock', false, command);
         }
         if (command == 'forecolor' || command == 'backcolor') {
           document.execCommand($(this).data('command'), false, $(this).data('value'));
         }
         if (command == 'createlink' || command == 'insertimage') {
-          url = prompt('Enter the link here: ', 'http:\/\/');
-          document.execCommand($(this).data('command'), false, url);
+           if(command == 'insertimage'){
+                url = prompt('Enter the image link here: ', 'http:\/\/');
+                document.execCommand($(this).data('command'), false, url);
+           }
+           if(command == 'createlink'){
+                url = prompt('Enter the link here: ', 'http:\/\/');
+                document.execCommand($(this).data('command'), false, url);
+           }
         } 
         else {
             document.execCommand($(this).data('command'), false, null);
         }
     });
     /* Tools icon click  */
+
+    /** Change Headings 1 -> 6 & Paragraph **/   
+    $(document).on('change', '#editor_font_block_select', function() {
+        
+        var block_type = $(this).val();
+        $('#editor_input').blur();
+        $('#editor_input').focus();
+
+        document.execCommand('formatBlock', false, block_type);
+    });
+
+
+    /* IMAGE DRAG AND DROP -> CONVERT TO BASE64  */
+    var handleDrag = function(e) {
+        //kill any default behavior
+        e.stopPropagation();
+        e.preventDefault();
+    };
+    var handleDrop = function(e) {
+        //kill any default behavior
+        e.stopPropagation();
+        e.preventDefault();
+        //console.log(e);
+        //get x and y coordinates of the dropped item
+        x = e.clientX;
+        y = e.clientY;
+        //drops are treated as multiple files. Only dealing with single files right now, so assume its the first object you're interested in
+        var file = e.dataTransfer.files[0];
+        //don't try to mess with non-image files
+        if (file.type.match('image.*')) {
+            //then we have an image,
+
+            //we have a file handle, need to read it with file reader!
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = (function(theFile) {
+                //get the data uri
+                var dataURI = theFile.target.result;
+                //make a new image element with the dataURI as the source
+                var img = document.createElement("img");
+                img.src = dataURI;
+
+                //Insert the image at the carat
+
+                // Try the standards-based way first. This works in FF
+                if (document.caretPositionFromPoint) {
+                    var pos = document.caretPositionFromPoint(x, y);
+                    range = document.createRange();
+                    range.setStart(pos.offsetNode, pos.offset);
+                    range.collapse();
+                    range.insertNode(img);
+                }
+                // Next, the WebKit way. This works in Chrome.
+                else if (document.caretRangeFromPoint) {
+                    range = document.caretRangeFromPoint(x, y);
+                    range.insertNode(img);
+                }
+                else
+                {
+                    //not supporting IE right now.
+                    console.log('could not find carat');
+                }
+
+
+            });
+            //this reads in the file, and the onload event triggers, which adds the image to the div at the carat
+            reader.readAsDataURL(file);
+        }
+    };
+
+    var dropZone = document.getElementById('editor_input');
+    dropZone.addEventListener('dragover', handleDrag, false);
+    dropZone.addEventListener('drop', handleDrop, false);
+    /* IMAGE DRAG AND DROP -> CONVERT TO BASE 64 */
+
+
+    /* BLOCKQUOTE ISSUE FIX (Break out of the blockquote) */
+    $('#editor_input').keydown(function(e) {
+        var key = e.which;
+        if (key == 13) // the enter key code
+        {
+          var input = document.getElementById('editor_input');
+      
+          if (whichTag("blockquote")) {
+      
+            document.execCommand('InsertParagraph');
+            document.execCommand('Outdent');
+      
+          }
+        }
+      });
+      
+      function whichTag(tagName) {
+      
+        var sel, containerNode;
+        var tagFound = false;
+      
+        tagName = tagName.toUpperCase();
+      
+        if (window.getSelection) {
+      
+          sel = window.getSelection();
+      
+          if (sel.rangeCount > 0) {
+            containerNode = sel.getRangeAt(0).commonAncestorContainer;
+          }
+      
+        } else if ((sel = document.selection) && sel.type != "Control") {
+      
+          containerNode = sel.createRange().parentElement();
+      
+        }
+      
+        while (containerNode) {
+      
+          if (containerNode.nodeType == 1 && containerNode.tagName == tagName) {
+      
+            tagFound = true;
+            containerNode = null;
+      
+          } else {
+      
+            containerNode = containerNode.parentNode;
+      
+          }
+      
+        }
+      
+        return tagFound;
+      }
+    /* BLOCKQUOTE ISSUE FIX (Break out of the blockquote) */
+
       
      
 });

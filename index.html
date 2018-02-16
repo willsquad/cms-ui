@@ -41,7 +41,7 @@
 
                 <div id="rhs_content_div" class="animated fadeIn">
                     <div id="rhs_cms_div" class="col-12">
-                        <div id="cms_title_div" contenteditable="true" data-placeholder2="Enter title here"></div>
+                        <div id="cms_title_div" contenteditable="true" data-placeholder2="Enter title here" tabindex="1"></div>
                         <!-- NO empty spaces. Important!  -->
 
                         <!-- CONTENT EDITOR DIV -->
@@ -91,13 +91,13 @@
 
                                     <div class="editor_tool_div hidden-md-down">
                                         <select name="font_block" id="editor_font_block_select">
+                                            <option value="p" selected="selected">Paragraph</option>
                                             <option value="h1">Heading 1</option>
                                             <option value="h2">Heading 2</option>
                                             <option value="h3">Heading 3</option>
                                             <option value="h4">Heading 4</option>
                                             <option value="h5">Heading 5</option>
                                             <option value="h6">Heading 6</option>
-                                            <option value="p">Paragraph</option>
                                         </select>
                                     </div>
 
@@ -123,6 +123,9 @@
                                         <div id="strikethrough_icon" class="editor_tool_div_icons" title="Strike Through" data-command="strikeThrough">
                                             <i class="fas fa-strikethrough fa-fw"></i>
                                         </div>
+                                        <!-- <div id="color_icon" class="editor_tool_div_icons" title="Color" data-command="fontcolor">
+                                                <i class="fas fa-tint fa-fw"></i>
+                                        </div> -->
                                     </div>
 
                                     <div class="editor_tool_div_icons_container">
@@ -135,7 +138,7 @@
                                         <div class="editor_tool_div_icons tool_icons_click_js" title="Unlink" data-command="unlink">
                                             <i class="fas fa-unlink fa-fw"></i>
                                         </div>
-                                        <div class="editor_tool_div_icons tool_icons_click_js" title="Quote" data-command="blockQuote">
+                                        <div id="blockquote_icon" class="editor_tool_div_icons tool_icons_click_js" title="Quote" data-command="blockquote">
                                             <i class="fas fa-quote-left fa-fw"></i>
                                         </div>
 
@@ -189,7 +192,7 @@
 
                             </div>
                             
-                            <div id="editor_input" class="textarea" contenteditable="true" data-placeholder2="Add content" data-align="0"></div>
+                            <div id="editor_input" class="textarea" contenteditable="true" data-placeholder2="Add content" data-align="0" tabindex="2"></div>
                             <!-- NO empty spaces. Important!  -->
                         </div>
                         <!-- CONTENT EDITOR DIV -->

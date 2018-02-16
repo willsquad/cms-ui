@@ -166,6 +166,28 @@ body {
                     padding: 0px 30px;
                     justify-content: space-between;
 
+                    ul.list > [data-value="p"] {
+                        font-size: 14px;
+                    }
+                    ul.list > [data-value="h1"] {
+                        font-size: 2.5rem;
+                    }
+                    ul.list > [data-value="h2"] {
+                        font-size: 2rem;
+                    }
+                    ul.list > [data-value="h3"] {
+                        font-size: 1.75rem;
+                    }
+                    ul.list > [data-value="h4"] {
+                        font-size: 1.5rem;
+                    }
+                    ul.list > [data-value="h5"] {
+                        font-size: 1.25rem;
+                    }
+                    ul.list > [data-value="h6"] {
+                        font-size: 1rem;
+                    }
+
                     #tools_lhs{
                         display: flex;
                         background-color: $tool_bg_color;
@@ -199,6 +221,7 @@ body {
                         background-color: $tool_bg_color;
                         border: none;
                         font-size: 13px;
+                        padding-left: 0px;
                         &:after {
                             top: 55%;
                         }
@@ -238,7 +261,7 @@ body {
                         align-items: center;
                         margin-right: 30px;
                         cursor: pointer;
-                        color: #999;
+                        color: #888;
                         transition: color 0.3s ease;
                         &:hover {
                             color: #222;
@@ -256,6 +279,8 @@ body {
                     //line-height: 1.75em;
                     font-family: lora;
                     font-size: 18px;
+                    line-height: 30px;
+                    font-size: 20px;
                     cursor: text;
                     &:empty:before{
                         content: attr(data-placeholder2);
@@ -263,7 +288,7 @@ body {
                         color: #888;
                         font-size: 15px;
                         position: relative;
-                        top: 5px;
+                        top: 0px;
                         font-weight: 300;
                         font-family: "open sans";
                     }
@@ -285,7 +310,11 @@ body {
                         top: -2px;
                     }
 
-                    
+                    blockquote {
+                        border-left: 4px solid deepskyblue;
+                        padding-left: 15px;
+                        margin-right: 0px;
+                    }
 
                 }
             }
