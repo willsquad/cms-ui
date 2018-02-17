@@ -58,6 +58,11 @@ $(document).ready(function(){
         $('#bold_icon').toggleClass('active');
         $('#editor_input').blur();
         $('#editor_input').focus();
+
+        /* var selObj = window.getSelection();
+        var range  = selObj.getRangeAt(0);
+        window.alert(range); */
+
         
         
         if (document.activeElement.id == "editor_input") {
@@ -114,15 +119,7 @@ $(document).ready(function(){
         }
     });
 
-    $("#blockquote_icon").on('click', function() {
 
-        if(!$(this).hasClass('active')){
-
-        } else {
-
-        }   
-       
-    });
 
     /* $('.align_icons').on('click', function() {
         var self = $(this);
@@ -155,9 +152,7 @@ $(document).ready(function(){
         }
     }); */
 
-    /* $(document).on('click', '#upload_image', function() {
-        $(this).closest('.editor_tool_div_icons_container').find('#upload_img_file').click();
-    }); */
+
 
     /** Change Font-size **/   
     $(document).on('change', '#editor_font_size_select', function() {
@@ -170,7 +165,7 @@ $(document).ready(function(){
     $('#toggle_fullscreen').on('click', function(){
 
         var self = $(this);
-        self.toggleClass('active');
+        //self.toggleClass('active');
 
         if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
          if (document.documentElement.requestFullScreen) {  
@@ -209,39 +204,57 @@ $(document).ready(function(){
        }  
     });
 
+    /* $(document).on('keydown', function(e){
+        console.log('keydown');
+        var key = (e.keyCode ? e.keyCode : e.which);
+        if((key == 27) && $('#toggle_fullscreen').hasClass('active')){
+            console.log('escape');
+            $('#toggle_fullscreen').click();
+            self.removeClass('active');
+        }
+    }); */
+
+    /* Generate Color Palette */
+    var colorPalette = ['000000', 'F44336', 'E91E63', '9C27B0', '673AB7', '3F51B5', '2196F3', '03A9F4', '00BCD4', '009688', '4CAF50', '8BC34A', 'CDDC39', 'FFEB3B', 'FFC107', 'FF9800', 'FF5722', '795548', '9E9E9E', '607D8B', '333333'];
+    var forePalette = $('.fore-palette');
+  
+    for (var i = 0; i < colorPalette.length; i++) {
+      forePalette.append('<a href="#" data-command="forecolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + '" class="palette-item tool_icons_click_js" title="' + '#' + colorPalette[i] + '"></a>');
+    }
+    /* Generate Color Palette */
+    
+
     /* Tools icon click  */
     $('.tool_icons_click_js').on('click', function(){
 
         //var self = $(this);
-
-
         var command = $(this).data('command');
-
         $('#editor_input').focus();
 
 
         if (command == 'h1' || command == 'h2' || command == 'p' || command == 'blockquote') {
           document.execCommand('formatBlock', false, command);
         }
-        if (command == 'forecolor' || command == 'backcolor') {
+        else if (command == 'forecolor' || command == 'backcolor') {
           document.execCommand($(this).data('command'), false, $(this).data('value'));
         }
-        if (command == 'createlink' || command == 'insertimage') {
+        /* if (command == 'createlink' || command == 'insertimage') {
            if(command == 'insertimage'){
                 url = prompt('Enter the image link here: ', 'http:\/\/');
                 document.execCommand($(this).data('command'), false, url);
-           }
-           if(command == 'createlink'){
+           } */
+            else if(command == 'createlink'){
                 url = prompt('Enter the link here: ', 'http:\/\/');
                 document.execCommand($(this).data('command'), false, url);
-           }
-        } 
+            }
+        /* } */
         else {
             document.execCommand($(this).data('command'), false, null);
         }
     });
     /* Tools icon click  */
 
+    
     /** Change Headings 1 -> 6 & Paragraph **/   
     $(document).on('change', '#editor_font_block_select', function() {
         
@@ -316,6 +329,59 @@ $(document).ready(function(){
     dropZone.addEventListener('dragover', handleDrag, false);
     dropZone.addEventListener('drop', handleDrop, false);
     /* IMAGE DRAG AND DROP -> CONVERT TO BASE 64 */
+
+
+     /* UPLOAD IMAGE BUTTON CLICK  */
+     $(document).on('click', '#upload_image', function() {
+        $(this).closest('.editor_tool_div_icons_container').find('#upload_img_file').click();
+    });
+    /* UPLOAD IMAGE BUTTON CLICK  */
+
+    /** User Image Preview **/
+    var fileTypes = ['jpg', 'jpeg', 'png', 'gif'];
+    var content_formData = new FormData();
+
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            
+            var extension = input.files[0].name.split('.').pop().toLowerCase(); //file extension from input file
+            isSuccess = fileTypes.indexOf(extension) > -1;  //is extension in acceptable types
+            
+            if(isSuccess) {
+                var reader = new FileReader();
+        
+                reader.onload = function (e) {
+                    /* $('#editor_image').attr('src', e.target.result);
+                    var val = e.target.result;
+                    console.log(val); */
+                };
+        
+                reader.readAsDataURL(input.files[0]);
+                //$('.logo_file_error').removeClass('display');
+
+                //populate formdata
+                content_formData.append('content_img_file', $('#upload_img_file').prop('files')[0]);
+            } else {
+                 //$('.logo_file_error').addClass('display').html('<span class="fa fa-exclamation-triangle"></span> Sorry, only .jpeg, .jpg and .png files are allowed. Please try again with a different image.');
+                 alert("Sorry, only JPEG, JPG, PNG and GIF files are allowed. Please try again with a different image.");
+            }
+        }
+    }
+    
+    $("#upload_img_file").change(function(){ // When the file-upload-input changes
+        if($(this).get(0).files.length > 0){ // only if a file is selected
+            var fileSize = $(this).get(0).files[0].size; // get filesize
+            if(fileSize <= 1024000) { // if filesize less than or equal to 1MB
+                readURL(this); // change url
+                //$('.logo_size_error').removeClass('display'); // remove error-message's display class
+            } else { // show error message
+                //$('.logo_size_error').addClass('display').html('<span class="fa fa-exclamation-triangle"></span> Uh-oh, file size exceeded the upload limit of 1 MB. Please try again with a different image.');
+                alert("Uh-oh, file size exceeded the upload limit of 1 MB. Please try again with a different image.");
+            }
+          }
+    });
+    /** User Image Preview **/
 
 
     /* BLOCKQUOTE ISSUE FIX (Break out of the blockquote) */
