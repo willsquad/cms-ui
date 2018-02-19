@@ -1,4 +1,11 @@
 $(document).ready(function(){
+
+    // Unique ID Function
+    function uniqId() { /*To generate Unique Id's for the child elements*/
+        return Math.round(new Date().getTime() + (Math.random() * 100));
+    }
+
+
     $('#cms_title_div').on('click', function(){
         var editable = $(this);
     });
@@ -56,21 +63,19 @@ $(document).ready(function(){
 
     
         $('#bold_icon').toggleClass('active');
-        $('#editor_input').blur();
+        //$('#editor_input').blur();
         $('#editor_input').focus();
 
         /* var selObj = window.getSelection();
         var range  = selObj.getRangeAt(0);
-        window.alert(range); */
+        window.alert(range); */ 
 
-        
-        
         if (document.activeElement.id == "editor_input") {
             function trigger_keypress() {     
                 document.execCommand('bold',false,null);
             }
             // use setTimeout() to execute
-            setTimeout(trigger_keypress, 100); 
+            setTimeout(trigger_keypress, 100);
         }
 
        
@@ -225,8 +230,9 @@ $(document).ready(function(){
     
 
     /* Tools icon click  */
-    $('.tool_icons_click_js').on('click', function(){
+    $('.tool_icons_click_js').on('click', function(e){
 
+        e.preventDefault();
         //var self = $(this);
         var command = $(this).data('command');
         $('#editor_input').focus();
@@ -297,6 +303,7 @@ $(document).ready(function(){
                 var img = document.createElement("img");
                 img.src = dataURI;
 
+
                 //Insert the image at the carat
 
                 // Try the standards-based way first. This works in FF
@@ -306,11 +313,21 @@ $(document).ready(function(){
                     range.setStart(pos.offsetNode, pos.offset);
                     range.collapse();
                     range.insertNode(img);
+
+                    //unique id for the inserted image
+                    var uniqueId = uniqId();  
+                    image=$('img[src="'+dataURI+'"]').attr('id', ''+uniqueId+'').addClass('editor_image');
+                    //$( ".editor_image" ).resizable();
                 }
                 // Next, the WebKit way. This works in Chrome.
                 else if (document.caretRangeFromPoint) {
                     range = document.caretRangeFromPoint(x, y);
                     range.insertNode(img);
+
+                    //unique id for the inserted image
+                    var uniqueId = uniqId();  
+                    image=$('img[src="'+dataURI+'"]').attr('id', ''+uniqueId+'').addClass('editor_image');
+                    //$( ".editor_image" ).resizable();
                 }
                 else
                 {
@@ -336,6 +353,7 @@ $(document).ready(function(){
         $(this).closest('.editor_tool_div_icons_container').find('#upload_img_file').click();
     });
     /* UPLOAD IMAGE BUTTON CLICK  */
+    
 
     /** User Image Preview **/
     var fileTypes = ['jpg', 'jpeg', 'png', 'gif'];
@@ -352,10 +370,23 @@ $(document).ready(function(){
                 var reader = new FileReader();
         
                 reader.onload = function (e) {
-                    /* $('#editor_image').attr('src', e.target.result);
-                    var val = e.target.result;
-                    console.log(val); */
+                    //$('#editor_image').attr('src', e.target.result);
+                    $('#editor_input').focus();
+
+                    //unique id for the inserted image
+                    var uniqueId = uniqId();
+                    
+                    //console.log(e.target.result)
+                    document.execCommand('insertimage', false, e.target.result);
+                    image=$('img[src="'+e.target.result+'"]').attr('id', ''+uniqueId+'').addClass('editor_image');
+
+                    //$( ".editor_image" ).resizable();
+                    
+                    /* $( ".editor_image" ).resizable({
+                        containment: "#editor_input"
+                    }); */
                 };
+
         
                 reader.readAsDataURL(input.files[0]);
                 //$('.logo_file_error').removeClass('display');
@@ -439,7 +470,6 @@ $(document).ready(function(){
         return tagFound;
       }
     /* BLOCKQUOTE ISSUE FIX (Break out of the blockquote) */
-
       
      
 });
