@@ -59,6 +59,22 @@ $(document).ready(function(){
         }
     });
 
+    function userselect() {
+        var userSelection;
+        if (window.getSelection) {
+            userSelection = window.getSelection();
+            var range  = userSelection.getRangeAt(0);
+            console.log(range);
+        }
+    }
+        
+
+    $('#editor_input').on('mouseup', function(){
+        userselect();
+    }) 
+
+    
+
    $("#bold_icon").on('click', function() {
 
     
@@ -68,7 +84,9 @@ $(document).ready(function(){
 
         /* var selObj = window.getSelection();
         var range  = selObj.getRangeAt(0);
-        window.alert(range); */ 
+        //var range  = selObj.anchorNode;
+        
+        console.log(range); */
 
         if (document.activeElement.id == "editor_input") {
             function trigger_keypress() {     
