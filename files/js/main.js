@@ -57,6 +57,10 @@ $(document).ready(function(){
                 $('#underline_icon').toggleClass('active');
             }
         }
+
+        if($('.inline_toolbar').hasClass('active')) {
+            $('.inline_toolbar').removeClass('active');
+        }
     });
 
     function userselect() {
@@ -75,12 +79,16 @@ $(document).ready(function(){
 
     
 
-   $("#bold_icon").on('click', function() {
+   $(document).on('click', '.bold_icon', function() {
 
     
         $('#bold_icon').toggleClass('active');
         //$('#editor_input').blur();
         $('#editor_input').focus();
+
+        if($('.inline_toolbar').hasClass('active')) {
+            $('.inline_toolbar').removeClass('active');
+        }
 
         /* var selObj = window.getSelection();
         var range  = selObj.getRangeAt(0);
@@ -89,19 +97,41 @@ $(document).ready(function(){
         console.log(range); */
 
         if (document.activeElement.id == "editor_input") {
+
             function trigger_keypress() {     
                 document.execCommand('bold',false,null);
             }
+
+            /* var state = document.queryCommandState ("bold");
+            switch (state) {
+            case true:
+                // use setTimeout() to execute
+                setTimeout(trigger_keypress, 100);
+                break;
+            case false:
+                // use setTimeout() to execute
+                setTimeout(trigger_keypress, 100);
+                break;
+            case null:
+                alert ("The state of the 'bold' command is indeterminable.");
+                break;
+            } */
+
             // use setTimeout() to execute
             setTimeout(trigger_keypress, 100);
+            
         }
 
        
     });
-   $("#italic_icon").on('click', function() {
+    $(document).on('click', '.italic_icon', function() {
        
         $('#italic_icon').toggleClass('active');
         $('#editor_input').focus();
+
+        if($('.inline_toolbar').hasClass('active')) {
+            $('.inline_toolbar').removeClass('active');
+        }
 
         if (document.activeElement.id == "editor_input") {
             // place this within dom ready function
@@ -112,10 +142,15 @@ $(document).ready(function(){
             setTimeout(trigger_keypress, 100); 
         }
     });
-   $("#underline_icon").on('click', function() {
+
+    $(document).on('click', '.underline_icon', function() {
        
         $('#underline_icon').toggleClass('active');
         $('#editor_input').focus();
+
+        if($('.inline_toolbar').hasClass('active')) {
+            $('.inline_toolbar').removeClass('active');
+        }
 
         if (document.activeElement.id == "editor_input") {
             // place this within dom ready function
@@ -127,10 +162,14 @@ $(document).ready(function(){
         }
     });
 
-    $("#strikethrough_icon").on('click', function() {
+    $(document).on('click', '.strikethrough_icon', function() {
        
         $('#strikethrough_icon').toggleClass('active');
         $('#editor_input').focus();
+        
+        if($('.inline_toolbar').hasClass('active')) {
+            $('.inline_toolbar').removeClass('active');
+        }
 
         if (document.activeElement.id == "editor_input") {
             // place this within dom ready function
@@ -367,8 +406,8 @@ $(document).ready(function(){
 
 
      /* UPLOAD IMAGE BUTTON CLICK  */
-     $(document).on('click', '#upload_image', function() {
-        $(this).closest('.editor_tool_div_icons_container').find('#upload_img_file').click();
+     $(document).on('click', '.upload_image', function() {
+        $('#upload_img_file').click();
     });
     /* UPLOAD IMAGE BUTTON CLICK  */
     
@@ -488,6 +527,51 @@ $(document).ready(function(){
         return tagFound;
       }
     /* BLOCKQUOTE ISSUE FIX (Break out of the blockquote) */
+
+    /* GETSELECTION  */
+
+    $('#editor_input').on('mouseup', function(e){
+        
+
+        var selText = "";
+        var cursor_x = e.pageX;
+        var cursor_y = e.pageY - 125;
+
+        if (window.getSelection) {  // all browsers, except IE before version 9
+            if (document.activeElement && 
+                    (document.activeElement.tagName.toLowerCase () == "textarea" || 
+                     document.activeElement.tagName.toLowerCase () == "input")) 
+            {
+                var text = document.activeElement.value;
+                selText = text.substring (document.activeElement.selectionStart, 
+                                          document.activeElement.selectionEnd);
+            }
+            else {
+                var selRange = window.getSelection ();
+                selText = selRange.toString ();
+            }
+        }
+        else {
+            if (document.selection.createRange) { // Internet Explorer
+                var range = document.selection.createRange ();
+                selText = range.text;
+            }
+        }
+        if (selText !== "") {
+            //alert (selText);
+            $('.inline_toolbar').toggleClass('active');
+            $('.inline_toolbar').css({"top":""+cursor_y+"px", "left": ""+cursor_x+"px"});
+
+            //alert(cursor_x);
+        } else {
+            //alert (selText);
+            //$('.inline_toolbar').toggleClass('active');
+        }
+    });
+
+    /* $('#editor_input').on('click', function(){
+        $('.inline_toolbar').toggleClass('active').css({});
+    }); */
       
      
 });

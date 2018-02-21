@@ -112,29 +112,29 @@
                                     </div>
 
                                     <div class="editor_tool_div_icons_container">
-                                        <div id="bold_icon" class="editor_tool_div_icons" title="Bold" data-command="bold">
+                                        <div id="bold_icon" class="editor_tool_div_icons bold_icon" title="Bold" data-command="bold">
                                             <i class="fas fa-bold fa-fw"></i>
                                         </div>
-                                        <div id="italic_icon" class="editor_tool_div_icons" title="Italic" data-command="italic">
+                                        <div id="italic_icon" class="editor_tool_div_icons italic_icon" title="Italic" data-command="italic">
                                             <i class="fas fa-italic fa-fw"></i>
                                         </div>
-                                        <div id="underline_icon" class="editor_tool_div_icons" title="Underline" data-command="underline">
+                                        <div id="underline_icon" class="editor_tool_div_icons underline_icon" title="Underline" data-command="underline">
                                             <i class="fas fa-underline fa-fw"></i>
                                         </div>
-                                        <div id="strikethrough_icon" class="editor_tool_div_icons" title="Strike Through" data-command="strikeThrough">
+                                        <div id="strikethrough_icon" class="editor_tool_div_icons strikethrough_icon" title="Strike Through" data-command="strikeThrough">
                                             <i class="fas fa-strikethrough fa-fw"></i>
                                         </div>
                                         <!-- <div id="color_icon" class="editor_tool_div_icons" title="Color" data-command="fontcolor">
                                                 <i class="fas fa-tint fa-fw"></i>
                                         </div> -->
-                                        <div class="editor_tool_div_icons fore-wrapper" title="Font Color"><i class='fas fa-font fa-fw' style='color:#F44336;'></i>
+                                        <div class="editor_tool_div_icons fore-wrapper" title="Font Color"><i class="fas fa-font fa-fw" style="color:#F44336;"></i>
                                             <div class="fore-palette">
                                             </div>
                                           </div>
                                     </div>
 
                                     <div class="editor_tool_div_icons_container">
-                                        <div id="upload_image" class="editor_tool_div_icons" title="Media" data-command="insertimage">
+                                        <div class="editor_tool_div_icons upload_image" title="Media" data-command="insertimage">
                                             <i class="far fa-image fa-fw"></i>
                                         </div>
                                         <div class="editor_tool_div_icons tool_icons_click_js" title="Link" data-command="createlink">
@@ -201,68 +201,7 @@
                             <div id="editor_input" class="textarea" contenteditable="true" data-placeholder2="Add content" data-align="0" tabindex="2"></div>
                             <!-- NO empty spaces. Important!  -->
 
-                            <div class="inline_toolbar">
-                                <div class="tools">
-                                    <div class="tools_top_row">
-                                        <div class="tool_icons">
-                                            <i class="fas fa-bold fa-fw"></i>
-                                        </div>
-                                        <div class="tool_icons">
-                                            <i class="fas fa-italic fa-fw"></i>
-                                        </div>
-                                        <div class="tool_icons">
-                                            <i class="fas fa-underline fa-fw"></i>
-                                        </div>
-                                        <div class="tool_icons">
-                                            <i class="fas fa-strikethrough fa-fw"></i>
-                                        </div>
-    
-                                        <div class="tool_icons tool_spacer">
-    
-                                        </div>
-    
-                                        <div class="tool_icons tool_icons_click_js" title="Left Align" data-command="justifyLeft">
-                                            <i class="fas fa-align-left fa-fw"></i>
-                                        </div>
-                                        <div class="tool_icons tool_icons_click_js" title="Center Align" data-command="justifyCenter">
-                                            <i class="fas fa-align-center fa-fw"></i>
-                                        </div>
-                                        <div class="tool_icons tool_icons_click_js" title="Right Align" data-command="justifyRight">
-                                            <i class="fas fa-align-right fa-fw"></i>
-                                        </div>
-                                        <div class="tool_icons tool_icons_click_js" title="Indent" data-command="indent">
-                                            <i class="fas fa-indent fa-fw"></i>
-                                        </div>
-                                        <div class="tool_icons tool_icons_click_js" title="Outdent" data-command="outdent">
-                                            <i class="fas fa-outdent fa-fw"></i>
-                                        </div>
-                                        <div class="tool_icons tool_icons_click_js" title="Quote" data-command="blockquote">
-                                            <i class="fas fa-quote-left fa-fw"></i>
-                                        </div>                                    
-                                    </div>
-
-                                    <div class="tools_bottom_row">
-                                        <div class="tool_icons">
-                                            <i class="far fa-image fa-fw"></i>
-                                        </div>
-                                        <div class="tool_icons tool_icons_click_js" title="Link" data-command="createlink">
-                                            <i class="fas fa-link fa-fw"></i>
-                                        </div>
-                                        <div class="tool_icons tool_icons_click_js" title="Link" data-command="unlink">
-                                            <i class="fas fa-unlink fa-fw"></i>
-                                        </div>
-                                       
-                                        <div class="tool_icons tool_icons_click_js" title="Unordered List" data-command="insertUnorderedList">
-                                            <i class="fas fa-list-ul fa-fw"></i>
-                                        </div>
-                                        <div class="tool_icons tool_icons_click_js" title="Ordered List" data-command="insertOrderedList">
-                                            <i class="fas fa-list-ol fa-fw"></i>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="arrow-down"></div>
-                            </div>
+                           
                         </div>
                         <!-- CONTENT EDITOR DIV -->
                     </div>
@@ -272,6 +211,70 @@
             <!-- End of RHS -->
         </div>
     </div>
+
+    <div class="inline_toolbar" contenteditable="false">
+            <div class="tools">
+                <div class="tools_top_row">
+                    <div class="tool_icons bold_icon">
+                        <i class="fas fa-bold fa-fw"></i>
+                    </div>
+                    <div class="tool_icons italic_icon">
+                        <i class="fas fa-italic fa-fw"></i>
+                    </div>
+                    <div class="tool_icons underline_icon">
+                        <i class="fas fa-underline fa-fw"></i>
+                    </div>
+                    <div class="tool_icons strikethrough_icon">
+                        <i class="fas fa-strikethrough fa-fw"></i>
+                    </div>
+
+                    <div class="">
+                        &nbsp; &nbsp;
+                        &nbsp; &nbsp;
+                    </div>
+
+                    <div class="tool_icons tool_icons_click_js" title="Left Align" data-command="justifyLeft">
+                        <i class="fas fa-align-left fa-fw"></i>
+                    </div>
+                    <div class="tool_icons tool_icons_click_js" title="Center Align" data-command="justifyCenter">
+                        <i class="fas fa-align-center fa-fw"></i>
+                    </div>
+                    <div class="tool_icons tool_icons_click_js" title="Right Align" data-command="justifyRight">
+                        <i class="fas fa-align-right fa-fw"></i>
+                    </div>
+                    <div class="tool_icons tool_icons_click_js" title="Indent" data-command="indent">
+                        <i class="fas fa-indent fa-fw"></i>
+                    </div>
+                    <div class="tool_icons tool_icons_click_js" title="Outdent" data-command="outdent">
+                        <i class="fas fa-outdent fa-fw"></i>
+                    </div>
+                    <div class="tool_icons tool_icons_click_js" title="Quote" data-command="blockquote">
+                        <i class="fas fa-quote-left fa-fw"></i>
+                    </div>                                    
+                </div>
+
+                <div class="tools_bottom_row">
+                    <div class="tool_icons upload_image">
+                        <i class="far fa-image fa-fw"></i>
+                    </div>
+                    <div class="tool_icons tool_icons_click_js" title="Link" data-command="createlink">
+                        <i class="fas fa-link fa-fw"></i>
+                    </div>
+                    <div class="tool_icons tool_icons_click_js" title="Link" data-command="unlink">
+                        <i class="fas fa-unlink fa-fw"></i>
+                    </div>
+                   
+                    <div class="tool_icons tool_icons_click_js" title="Unordered List" data-command="insertUnorderedList">
+                        <i class="fas fa-list-ul fa-fw"></i>
+                    </div>
+                    <div class="tool_icons tool_icons_click_js" title="Ordered List" data-command="insertOrderedList">
+                        <i class="fas fa-list-ol fa-fw"></i>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="arrow-down"></div>
+        </div>
 
 </body>
 <script defer src="//use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
