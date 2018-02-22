@@ -294,6 +294,10 @@ $(document).ready(function(){
         var command = $(this).data('command');
         $('#editor_input').focus();
 
+        if($('.inline_toolbar').hasClass('active')) {
+            $('.inline_toolbar').removeClass('active');
+        }
+
 
         if (command == 'h1' || command == 'h2' || command == 'p' || command == 'blockquote') {
           document.execCommand('formatBlock', false, command);
@@ -532,13 +536,23 @@ $(document).ready(function(){
 
     $('#editor_input').on('mouseup', function(e){
         
+        var editor_input_width = document.getElementById("editor_input").offsetWidth;
 
         var selText = "";
-        var cursor_x = e.pageX;
-        var cursor_y = e.pageY - 125;
+        var cursor_x = e.clientX;
+        var cursor_y = e.clientY - 125; // 125 being the height of the div + arrow etc, so that the inline editor is about the selection.
+
+        console.log(cursor_x);
+        console.log(editor_input_width);
+
+        if(cursor_x > editor_input_width/1.5) {
+            var cursor_x = editor_input_width/1.15;
+        }
+
+        console.log(cursor_x);
 
         if (window.getSelection) {  // all browsers, except IE before version 9
-            if (document.activeElement && 
+            /* if (document.activeElement && 
                     (document.activeElement.tagName.toLowerCase () == "textarea" || 
                      document.activeElement.tagName.toLowerCase () == "input")) 
             {
@@ -546,9 +560,21 @@ $(document).ready(function(){
                 selText = text.substring (document.activeElement.selectionStart, 
                                           document.activeElement.selectionEnd);
             }
-            else {
+            else { */
                 var selRange = window.getSelection ();
                 selText = selRange.toString ();
+            /* } */
+
+            if (selText !== "") {
+                //alert (selText);
+                $('.inline_toolbar').toggleClass('active');
+                $('.inline_toolbar').css({"top":""+cursor_y+"px", "left": ""+cursor_x+"px"});
+    
+                //alert(cursor_x);
+            } else {
+                //alert (selText);
+                $('.inline_toolbar').removeClass('active');
+                //$('.inline_toolbar').toggleClass('active');
             }
         }
         else {
@@ -556,22 +582,74 @@ $(document).ready(function(){
                 var range = document.selection.createRange ();
                 selText = range.text;
             }
-        }
-        if (selText !== "") {
-            //alert (selText);
-            $('.inline_toolbar').toggleClass('active');
-            $('.inline_toolbar').css({"top":""+cursor_y+"px", "left": ""+cursor_x+"px"});
 
-            //alert(cursor_x);
-        } else {
-            //alert (selText);
-            //$('.inline_toolbar').toggleClass('active');
+            if (selText !== "") {
+                //alert (selText);
+                $('.inline_toolbar').toggleClass('active');
+                $('.inline_toolbar').css({"top":""+cursor_y+"px", "left": ""+cursor_x+"px"});
+    
+                //alert(cursor_x);
+            } else {
+                //alert (selText);
+                //$('.inline_toolbar').toggleClass('active');
+            }
         }
+        
     });
 
     /* $('#editor_input').on('click', function(){
         $('.inline_toolbar').toggleClass('active').css({});
     }); */
+
+    /** Start of Generate Preview **/
+          
+    $('#save_content').on('click', function() {
+        var get_editor_contents =  $("#editor_input").html();
+        var get_editor_heading =  $("#cms_title_div").text();
+        var editor_content = get_editor_contents;
+        var editor_heading = get_editor_heading;
+        localStorage.setItem('editor_content', editor_content);
+        localStorage.setItem('editor_heading', editor_heading);
+           
+        //$(this).addClass('active');
+        if((get_editor_contents !== "") || (get_editor_heading !== "")) {
+            alert('Your post has been successfully saved.');
+        }
+        
+   });
+
+    if(localStorage.getItem('editor_heading')) {
+        $('#cms_title_div').prepend(localStorage.getItem('editor_heading'));
+    }
+    if(localStorage.getItem('editor_content')) {
+        $('#editor_input').prepend(localStorage.getItem('editor_content'));
+    }
+
+    $('#delete_content').on('click', function() {
+        if (confirm('Are you sure you want to delete this post?')) {
+            // Delete it!
+            localStorage.removeItem('editor_content');
+            localStorage.removeItem('editor_heading');
+            $('#cms_title_div').html('');
+            $('#editor_input').html('');
+        } else {
+            // Do nothing!
+        }
+        
+    });
+
+    setInterval(function(){ 
+        //save every 5 seconds
+        var get_editor_contents =  $("#editor_input").html();
+        var get_editor_heading =  $("#cms_title_div").text();
+        var editor_content = get_editor_contents;
+        var editor_heading = get_editor_heading;
+        localStorage.setItem('editor_content', editor_content);
+        localStorage.setItem('editor_heading', editor_heading);
+        
+    }, 5000);
+
+   /** End of Generate Preview **/
       
      
 });
