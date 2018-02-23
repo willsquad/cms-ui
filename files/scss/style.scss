@@ -221,7 +221,7 @@ body {
                         background-color: $tool_bg_color;
                         border: none;
                         font-size: 13px;
-                        padding-left: 0px;
+                        //padding-left: 0px;
                         &:after {
                             top: 55%;
                         }
@@ -274,6 +274,63 @@ body {
 
                         &.upload_image {
                             font-size: 16px;
+                            position: relative;
+                            &:hover {
+                                color: #000;
+                            }
+                            .image_modal_container {
+
+                                position: absolute;
+                                top: -35px;
+                                left: -20px;
+                                display: none;
+
+                                &.active {
+                                    display: block;
+                                }
+                            }
+                            .image_modal {
+                               
+                                background: #333;
+                                width: 90px;
+                                box-shadow: 0 0 10px rgba(0,0,0,0.15);
+                                height: 35px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: #ccc;
+                                
+                                &:hover {
+                                    color: #ccc;
+                                }
+
+                                .image_modal_icons{
+                                    width: 45px;
+                                    display: flex;
+                                    justify-content: center;
+                                    height: 35px;
+                                    align-items: center;
+                                    border-right: 1px solid #797979;
+                                    transition: color 0.3s ease;
+                                    font-size: 14px;
+                                    &:last-child {
+                                        border-right: none;
+                                    }
+                                    &:hover {
+                                        color: #fff;
+                                    }
+                                }   
+                            }
+                            .arrow-down-image {
+                                width: 0;
+                                height: 0;
+                                border-left: 10px solid transparent;
+                                border-right: 10px solid transparent;
+                                border-top: 10px solid #000;
+                                position: absolute;
+                                top: 35px;
+                                left: 34px;
+                              }
                         }
                     }
 
@@ -341,7 +398,7 @@ body {
                     //line-height: 1.75em;
                     font-family: lora;
                     font-size: 18px;
-                    line-height: 30px;
+                    line-height: 32px;
                     font-size: 20px;
                     cursor: text;
                     &:empty:before{

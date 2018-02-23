@@ -305,16 +305,34 @@ $(document).ready(function(){
         else if (command == 'forecolor' || command == 'backcolor') {
           document.execCommand($(this).data('command'), false, $(this).data('value'));
         }
-        /* if (command == 'createlink' || command == 'insertimage') {
+        if (command == 'createlink' || command == 'insertimage') {
            if(command == 'insertimage'){
                 url = prompt('Enter the image link here: ', 'http:\/\/');
-                document.execCommand($(this).data('command'), false, url);
-           } */
+                
+                if(url === null) {
+                    // Do nothing
+                } else if (url == '') {
+                    // Do nothing
+                } else if (url == 'http://') {
+                    // Do nothing
+                } else {
+                    document.execCommand($(this).data('command'), false, url);
+                }
+           }
             else if(command == 'createlink'){
                 url = prompt('Enter the link here: ', 'http:\/\/');
-                document.execCommand($(this).data('command'), false, url);
+                if(url === null) {
+                    // Do nothing
+                } else if (url == '') {
+                    // Do nothing
+                } else if (url == 'http://') {
+                    // Do nothing
+                } else {
+                    document.execCommand($(this).data('command'), false, url);
+                }
+                
             }
-        /* } */
+        }
         else {
             document.execCommand($(this).data('command'), false, null);
         }
@@ -331,6 +349,7 @@ $(document).ready(function(){
 
         document.execCommand('formatBlock', false, block_type);
     });
+    /** Change Headings 1 -> 6 & Paragraph **/  
 
 
     /* IMAGE DRAG AND DROP -> CONVERT TO BASE64  */
@@ -410,10 +429,23 @@ $(document).ready(function(){
 
 
      /* UPLOAD IMAGE BUTTON CLICK  */
-     $(document).on('click', '.upload_image', function() {
+     $(document).on('click', '.upload_image_desktop', function() {
         $('#upload_img_file').click();
     });
+
+    $(document).on('click', '.upload_image_open_modal', function(){
+        $(this).toggleClass('active');
+        $('.image_modal_container').toggleClass('active');
+    });
     /* UPLOAD IMAGE BUTTON CLICK  */
+
+    /* Change font  */
+    $(document).on('change', '#editor_font_family', function() {
+        var font_family=$(this).val();
+        $('#editor_input').css('font-family', font_family);
+    });
+    /* Change font  */
+
     
 
     /** User Image Preview **/
