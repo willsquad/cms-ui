@@ -567,7 +567,7 @@ $(document).ready(function(){
 
             if (selText !== "") {
                 //alert (selText);
-                $('.inline_toolbar').toggleClass('active');
+                $('.inline_toolbar').addClass('active');
                 $('.inline_toolbar').css({"top":""+cursor_y+"px", "left": ""+cursor_x+"px"});
     
                 //alert(cursor_x);
