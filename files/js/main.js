@@ -35,7 +35,7 @@ $(document).ready(function(){
         $(this).addClass('active');
       });
 
-    // Bold icon toggle
+    // Bold, Italic, Underline icon toggle using key
     $('#editor_input').on('keydown', function(e) {
         /* var key = e.which;
         if (key == 66 && (e.ctrlKey == true || e.metaKey == true)) {
@@ -63,22 +63,23 @@ $(document).ready(function(){
         }
     });
 
-    function userselect() {
+
+    /* function userselect() {
         var userSelection;
         if (window.getSelection) {
             userSelection = window.getSelection();
             var range  = userSelection.getRangeAt(0);
-            console.log(range);
+            //console.log(range);
         }
     }
         
 
     $('#editor_input').on('mouseup', function(){
         userselect();
-    }) 
+    })  */
 
     
-
+    /* Start of Bold, Italic, Undreline, Strikethrough  */
    $(document).on('click', '.bold_icon', function() {
 
     
@@ -180,6 +181,7 @@ $(document).ready(function(){
             setTimeout(trigger_keypress, 100);
         }
     });
+    /* Start of Bold, Italic, Undreline, Strikethrough  */
 
 
 
@@ -222,6 +224,7 @@ $(document).ready(function(){
         var size_value=$(this).val();
         $('#editor_input').css('font-size', size_value+'px');
     });
+    /** Change Font-size **/  
 
     /* Toggle fullscreen  */
     $('#toggle_fullscreen').on('click', function(){
@@ -384,6 +387,7 @@ $(document).ready(function(){
                 img.src = dataURI;
 
 
+
                 //Insert the image at the carat
 
                 // Try the standards-based way first. This works in FF
@@ -478,6 +482,12 @@ $(document).ready(function(){
                     /* $( ".editor_image" ).resizable({
                         containment: "#editor_input"
                     }); */
+
+                    /* var image = new Image();
+                    image.src = reader.result;
+                    image.onload = function () {
+                        alert(image.width+' '+image.height);
+                    }; */
                 };
 
         
@@ -564,8 +574,8 @@ $(document).ready(function(){
       }
     /* BLOCKQUOTE ISSUE FIX (Break out of the blockquote) */
 
-    /* GETSELECTION  */
 
+    /* GETSELECTION  */
     $('#editor_input').on('mouseup', function(e){
         
         var editor_input_width = document.getElementById("editor_input").offsetWidth;
@@ -574,14 +584,15 @@ $(document).ready(function(){
         var cursor_x = e.clientX;
         var cursor_y = e.clientY - 125; // 125 being the height of the div + arrow etc, so that the inline editor is about the selection.
 
-        console.log(cursor_x);
-        console.log(editor_input_width);
+       /*  console.log(cursor_x);
+        console.log(editor_input_width); */
 
-        if(cursor_x > editor_input_width/1.5) {
+        /* if(cursor_x > editor_input_width/1.5) {
             var cursor_x = editor_input_width/1.15;
-        }
+        } */
+        
 
-        console.log(cursor_x);
+        /* console.log(cursor_x); */
 
         if (window.getSelection) {  // all browsers, except IE before version 9
             /* if (document.activeElement && 
@@ -594,7 +605,18 @@ $(document).ready(function(){
             }
             else { */
                 var selRange = window.getSelection ();
-                selText = selRange.toString ();
+                var selText = selRange.toString ();
+                
+                /*create an element before the selection to get the position*/
+                var oRange = selRange.getRangeAt(0); //get the text range
+                var oRect = oRange.getBoundingClientRect();
+
+                var cursor_y = oRect.top - 105;
+                var cursor_x = oRect.left;
+
+                if(cursor_x > editor_input_width/1.05) {
+                    var cursor_x = editor_input_width/1.05;
+                }
             /* } */
 
             if (selText !== "") {
@@ -612,7 +634,7 @@ $(document).ready(function(){
         else {
             if (document.selection.createRange) { // Internet Explorer
                 var range = document.selection.createRange ();
-                selText = range.text;
+                var selText = range.text;
             }
 
             if (selText !== "") {
@@ -633,15 +655,17 @@ $(document).ready(function(){
         $('.inline_toolbar').toggleClass('active').css({});
     }); */
 
-    /** Start of Generate Preview **/
-          
+    /** Start of Save content **/     
     $('#save_content').on('click', function() {
         var get_editor_contents =  $("#editor_input").html();
         var get_editor_heading =  $("#cms_title_div").text();
+        var get_content_style =  $("#editor_input").attr('style');
         var editor_content = get_editor_contents;
         var editor_heading = get_editor_heading;
+        var content_style = get_content_style;
         localStorage.setItem('editor_content', editor_content);
         localStorage.setItem('editor_heading', editor_heading);
+        localStorage.setItem('content_style', content_style);
            
         //$(this).addClass('active');
         if((get_editor_contents !== "") || (get_editor_heading !== "")) {
@@ -656,14 +680,19 @@ $(document).ready(function(){
     if(localStorage.getItem('editor_content')) {
         $('#editor_input').prepend(localStorage.getItem('editor_content'));
     }
+    if(localStorage.getItem('content_style')) {
+        $('#editor_input').attr('style', localStorage.getItem('content_style'));
+    }
 
     $('#delete_content').on('click', function() {
         if (confirm('Are you sure you want to delete this post?')) {
             // Delete it!
             localStorage.removeItem('editor_content');
             localStorage.removeItem('editor_heading');
+            localStorage.removeItem('content_style');
             $('#cms_title_div').html('');
             $('#editor_input').html('');
+            $('#editor_input').attr('style', '');
         } else {
             // Do nothing!
         }
@@ -674,14 +703,29 @@ $(document).ready(function(){
         //save every 5 seconds
         var get_editor_contents =  $("#editor_input").html();
         var get_editor_heading =  $("#cms_title_div").text();
+        var get_content_style =  $("#editor_input").attr('style');
         var editor_content = get_editor_contents;
         var editor_heading = get_editor_heading;
+        var content_style = get_content_style;
         localStorage.setItem('editor_content', editor_content);
         localStorage.setItem('editor_heading', editor_heading);
+        localStorage.setItem('content_style', content_style);
         
     }, 5000);
 
-   /** End of Generate Preview **/
+   /** End of Save content **/
+   
+   
+   /* Image Editing */
+   $(document).on('click', '.editor_image', function(){
+       var id = $(this).attr('id');
+       var position = $(this).offset();
+
+       var cursor_y = position.top - 100;
+
+       $('.image_editor_tools').toggleClass('active').css({"top":""+cursor_y+"px", "left": ""+position.left+"px"});
+   });
+   /* Image Editing */
       
      
 });

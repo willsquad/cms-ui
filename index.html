@@ -221,7 +221,7 @@
 
                             </div>
 
-                            <div id="editor_input" class="textarea" contenteditable="true" data-placeholder2="Add content" data-align="0" tabindex="2"></div>
+                            <div id="editor_input" class="textarea" contenteditable="true" data-placeholder2="Add content" tabindex="2" style=""></div>
                             <!-- NO empty spaces. Important!  -->
 
 
@@ -235,6 +235,7 @@
         </div>
     </div>
 
+    <!-- Selection Toolbar  -->
     <div class="inline_toolbar" contenteditable="false">
         <div class="tools">
             <div class="tools_top_row">
@@ -297,6 +298,12 @@
         </div>
         <!-- <div class="arrow-down"></div> -->
     </div>
+    <!-- Selection Toolbar  -->
+
+
+    <div class="image_editor_tools" contenteditable="false">
+        tools
+    </div>
 
 </body>
 <script defer src="//use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -304,5 +311,10 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="files/js/main.js"></script>
 <script src="files/js/ta_ns_combo.js"></script>
+<script>
+    $( ".editor_image" ).resizable({
+        containment: "#editor_input"
+    });
+</script>
 
 </html>
