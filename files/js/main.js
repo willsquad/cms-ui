@@ -324,6 +324,13 @@ $(document).ready(function(){
                     // Do nothing
                 } else {
                     document.execCommand($(this).data('command'), false, url);
+
+                    //unique id for the inserted image
+                    var uniqueId = uniqId();
+                    
+                    //console.log(e.target.result)
+                    document.execCommand('insertimage', false, e.target.result);
+                    image=$('img[src="'+url+'"]').attr('id', ''+uniqueId+'').addClass('editor_image');
                 }
            }
             else if(command == 'createlink'){
@@ -720,6 +727,8 @@ $(document).ready(function(){
         localStorage.setItem('editor_content', editor_content);
         localStorage.setItem('editor_heading', editor_heading);
         localStorage.setItem('content_style', content_style);
+
+        // Chrome image localstorage being saved repeatedly bug reason: 2 windows were open and one of them had the image in it!!
         
     }, 5000);
 
@@ -728,13 +737,71 @@ $(document).ready(function(){
    
    /* Image Editing */
    $(document).on('click', '.editor_image', function(){
-       var id = $(this).attr('id');
+       image_id = $(this).attr('id');
        var position = $(this).offset();
 
        var cursor_y = position.top - 115;
 
        $('.image_editor_tools').toggleClass('active').css({"top":""+cursor_y+"px", "left": ""+position.left+"px"});
    });
+
+   $(document).on('click', '.full_width_image', function(){
+       if($('.image_editor_tools').hasClass('active')){
+            $('#'+image_id+'').css({'width': '100%', 'height': 'auto'});
+       }
+   });
+
+
+   $(document).on('click', '.half_width_image', function(){
+       if($('.image_editor_tools').hasClass('active')){
+            $('#'+image_id+'').css({'width': '50%', 'height': 'auto'});
+       }
+   });
+
+   $(document).on('click', '.quarter_width_image', function(){
+       if($('.image_editor_tools').hasClass('active')){
+            $('#'+image_id+'').css({'width': '25%', 'height': 'auto'});
+       }
+   });
+
+   $(document).on('click', '.original_width_image', function(){
+       if($('.image_editor_tools').hasClass('active')){
+            $('#'+image_id+'').css({'width': 'auto', 'height': 'auto'});
+       }
+   });
+
+   $(document).on('click', '.delete_image', function(){
+       if($('.image_editor_tools').hasClass('active')){
+            $('#'+image_id+'').remove();
+            $('.image_size_text').removeClass('active');
+            $('.image_editor_tools').removeClass('active');
+       }
+   });
+
+   $(document).on('click', '.image_size_text', function(){
+       $('.image_size_text').removeClass('active');
+       $(this).addClass('active')
+   })
+
+   $(document).on('change paste keyup', '.input_image_width', function(){
+        var width_value = $(this).val();
+
+        if(width_value.match(/^\d+$/) && width_value.length >= 2) {
+            if($('.image_editor_tools').hasClass('active')){
+                $('#'+image_id+'').css('width', width_value);
+           }
+        }
+   });
+
+   $(document).on('change paste keyup', '.input_image_height', function(){
+    var height_value = $(this).val();
+
+    if(height_value.match(/^\d+$/) && height_value.length >= 2) {
+        if($('.image_editor_tools').hasClass('active')){
+            $('#'+image_id+'').css('height', height_value);
+       }
+    }
+});
    /* Image Editing */
       
      
