@@ -706,7 +706,7 @@ $(document).ready(function(){
         
     });
 
-    setInterval(function(){ 
+    /* setInterval(function(){ 
         //save every 5 seconds
         var get_editor_contents =  $("#editor_input").html();
         var get_editor_heading =  $("#cms_title_div").text();
@@ -718,7 +718,7 @@ $(document).ready(function(){
         localStorage.setItem('editor_heading', editor_heading);
         localStorage.setItem('content_style', content_style);
         
-    }, 5000);
+    }, 5000); */
 
    /** End of Save content **/
    
