@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="files/css/bootstrap.css">
     <link rel="stylesheet" href="files/css/nice-select.css">
     <link rel="stylesheet" href="files/css/style.css">
-    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Lora" rel="stylesheet">
 </head>
 
@@ -302,19 +301,72 @@
 
 
     <div class="image_editor_tools" contenteditable="false">
-        tools
+        <div class="tools">
+            <div class="tools_top_row">
+                <div class="tool_icons bold_icon">
+                    <i class="fas fa-bold fa-fw"></i>
+                </div>
+                <div class="tool_icons italic_icon">
+                    <i class="fas fa-italic fa-fw"></i>
+                </div>
+                <div class="tool_icons underline_icon">
+                    <i class="fas fa-underline fa-fw"></i>
+                </div>
+                <div class="tool_icons strikethrough_icon">
+                    <i class="fas fa-strikethrough fa-fw"></i>
+                </div>
+
+                <div class="">
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                </div>
+
+                <div class="tool_icons tool_icons_click_js" title="Left Align" data-command="justifyLeft">
+                    <i class="fas fa-align-left fa-fw"></i>
+                </div>
+                <div class="tool_icons tool_icons_click_js" title="Center Align" data-command="justifyCenter">
+                    <i class="fas fa-align-center fa-fw"></i>
+                </div>
+                <div class="tool_icons tool_icons_click_js" title="Right Align" data-command="justifyRight">
+                    <i class="fas fa-align-right fa-fw"></i>
+                </div>
+                <div class="tool_icons tool_icons_click_js" title="Indent" data-command="indent">
+                    <i class="fas fa-indent fa-fw"></i>
+                </div>
+                <div class="tool_icons tool_icons_click_js" title="Outdent" data-command="outdent">
+                    <i class="fas fa-outdent fa-fw"></i>
+                </div>
+                <div class="tool_icons tool_icons_click_js" title="Quote" data-command="blockquote">
+                    <i class="fas fa-quote-left fa-fw"></i>
+                </div>
+            </div>
+
+            <div class="tools_bottom_row">
+                <div class="tool_icons upload_image upload_image_desktop">
+                    <i class="far fa-image fa-fw"></i>
+                </div>
+                <div class="tool_icons tool_icons_click_js" title="Link" data-command="createlink">
+                    <i class="fas fa-link fa-fw"></i>
+                </div>
+                <div class="tool_icons tool_icons_click_js" title="Link" data-command="unlink">
+                    <i class="fas fa-unlink fa-fw"></i>
+                </div>
+
+                <div class="tool_icons tool_icons_click_js" title="Unordered List" data-command="insertUnorderedList">
+                    <i class="fas fa-list-ul fa-fw"></i>
+                </div>
+                <div class="tool_icons tool_icons_click_js" title="Ordered List" data-command="insertOrderedList">
+                    <i class="fas fa-list-ol fa-fw"></i>
+                </div>
+            </div>
+
+        </div>
+        <div class="arrow-down"></div>
     </div>
 
 </body>
 <script defer src="//use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="files/js/main.js"></script>
 <script src="files/js/ta_ns_combo.js"></script>
-<script>
-    $( ".editor_image" ).resizable({
-        containment: "#editor_input"
-    });
-</script>
 
 </html>

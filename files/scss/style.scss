@@ -551,13 +551,62 @@ body {
 /* Image Editor Toolbar  */
 .editor_image{
     cursor: pointer;
+    max-width: 50%;
 }
 .image_editor_tools {
     position: absolute;
-    width: 350px;
-    height: 85px;
-    background: #333;
+    z-index: 10000;
     display: none;
+
+    .tools{
+        // /min-width: 370px;
+        height: 95px;
+        background-color: #272727;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        .tools_top_row, .tools_bottom_row{
+            display: flex;
+        }
+        .tools_bottom_row {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+        .tools_bottom_row > .tool_icons {
+            font-size: 14px;
+        }
+        .tool_icons {
+            color: #ddd;
+            width: 30px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            &:hover {
+                border: 1px solid #999;
+                color: #D93B36;
+            }
+            &:active {
+                border: 1px solid #999;
+                color: #D93B36;
+            }
+            &.tool_spacer{
+                border: none;
+            }
+
+            &.upload_image {
+                font-size: 17px;
+            }
+        }
+    }
+    
     &.active{
         display: block;
     }
