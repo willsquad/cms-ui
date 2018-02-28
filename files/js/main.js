@@ -520,6 +520,8 @@ $(document).ready(function(){
             if(fileSize <= 1024000) { // if filesize less than or equal to 1MB
                 readURL(this); // change url
                 //$('.logo_size_error').removeClass('display'); // remove error-message's display class
+
+                $('#upload_img_file').val(''); // Clear uploaded file to prevent the error of the same image not being shown when deleted and uploaded again.
             } else { // show error message
                 //$('.logo_size_error').addClass('display').html('<span class="fa fa-exclamation-triangle"></span> Uh-oh, file size exceeded the upload limit of 1 MB. Please try again with a different image.');
                 alert("Uh-oh, file size exceeded the upload limit of 1 MB. Please try again with a different image.");
