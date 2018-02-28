@@ -77,9 +77,9 @@ body {
         overflow-y: hidden;
     }
     user-select: none;
-    @include media-breakpoint-down(xs){
+    /* @include media-breakpoint-down(xs){
         padding-top: 15px;
-    }
+    } */
 }
 
 /* LHS  */
