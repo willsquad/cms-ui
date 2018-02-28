@@ -15,29 +15,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <!-- Start of LHS -->
-            <div id="ui_lhs" class="col-12 col-sm-4 col-lg-3 col-xl-2 hidden-xs-down">
-                <div id="lhs_top_div">
-                </div>
-                <div id="lhs_menu_content_div">
-                </div>
-            </div>
-            <!-- End of LHS -->
-
-            <!-- Start of LHS XS -->
-            <div id="ui_lhs_xs_container" class="col-12 hidden-sm-up">
-
-            </div>
-            <!-- End of LHS XS -->
-
-            <!-- Start of RHS -->
-            <div id="ui_rhs" class="col-12 col-sm-8 col-lg-9 col-xl-10">
-                <div id="rhs_top_bar">
-                    <div class="heading">Add New Post</div>
-                    <div class="sidebar_menu_button">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                </div>
+            <div id="ui_rhs" class="col-12">
 
                 <div id="rhs_content_div" class="animated fadeIn">
                     <div id="rhs_cms_div" class="col-12">
@@ -46,181 +24,211 @@
 
                         <!-- CONTENT EDITOR DIV -->
                         <div id="editor_div">
-                            <div id="editor_tools">
 
-                                <div id="tools_lhs">
-                                    <!-- <div class="editor_tool_div">
-                                        <span>Size:</span>
-                                        <select name="font_family" id="editor_font_size_select">
-                                            <option value="30">30</option>
-                                            <option value="29">29</option>
-                                            <option value="28">28</option>
-                                            <option value="27">27</option>
-                                            <option value="26">26</option>
-                                            <option value="25">25</option>
-                                            <option value="24">24</option>
-                                            <option value="23">23</option>
-                                            <option value="22">22</option>
-                                            <option value="21">21</option>
-                                            <option value="20">20</option>
-                                            <option value="19">19</option>
-                                            <option value="18">18</option>
-                                            <option value="17">17</option>
-                                            <option value="16" selected="selected">16</option>
-                                            <option value="15">15</option>
-                                            <option value="14">14</option>
-                                            <option value="13">13</option>
-                                            <option value="12">12</option>
-                                            <option value="11">11</option>
-                                            <option value="10">10</option>
-                                            <option value="9">9</option>
-                                            <option value="8">8</option>
-                                        </select>
-                                    </div> -->
-
-
-                                    <!-- <div class="editor_tool_div hidden-md-down">
-                                        <span>Weight:</span>
-                                        <select name="font_weight" id="editor_font_weight_select">
-                                            <option value="light">Light</option>
-                                            <option value="regular">Regular</option>
-                                            <option value="semi-bold">Semi-Bold</option>
-                                            <option value="bold">Bold</option>
-                                        </select>
-                                    </div> -->
-
-                                    <div class="editor_tool_div hidden-md-down hidden-md-down">
-                                        <span>Font:</span>
-                                        <select name="editor_font_family" id="editor_font_family">
-                                            <option value="lora">Lora</option>
-                                            <option value="open sans">Open Sans</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="editor_tool_div hidden-md-down">
-                                        <select name="font_block" id="editor_font_block_select">
-                                            <option value="p" selected="selected">Paragraph</option>
-                                            <option value="h1">Heading 1</option>
-                                            <option value="h2">Heading 2</option>
-                                            <option value="h3">Heading 3</option>
-                                            <option value="h4">Heading 4</option>
-                                            <option value="h5">Heading 5</option>
-                                            <option value="h6">Heading 6</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="editor_tool_div_icons_container">
-                                        <div class="editor_tool_div_icons tool_icons_click_js" title="Undo" data-command="undo">
-                                            <i class="fas fa-undo-alt fa-fw"></i>
+                            <!-- Start of Editor Tools container  -->
+                            <div class="editor_tools_container">
+                                <!--  Start of editor tools 1 -->
+                                <div class="editor_tools">
+                                    <div class="tools_lhs">
+                                        <div class="editor_tool_div">
+                                            <span>Font:</span>
+                                            <select name="editor_font_family" id="editor_font_family">
+                                                <option value="lora">Lora</option>
+                                                <option value="open sans">Open Sans</option>
+                                            </select>
                                         </div>
-                                        <div class="editor_tool_div_icons tool_icons_click_js" title="Redo" data-command="redo">
-                                            <i class="fas fa-redo-alt fa-fw"></i>
-                                        </div>
-                                    </div>
 
-                                    <div class="editor_tool_div_icons_container">
-                                        <div id="bold_icon" class="editor_tool_div_icons bold_icon" title="Bold" data-command="bold">
-                                            <i class="fas fa-bold fa-fw"></i>
+                                        <div class="editor_tool_div">
+                                            <select name="font_block" id="editor_font_block_select">
+                                                <option value="p" selected="selected">Paragraph</option>
+                                                <option value="h1">Heading 1</option>
+                                                <option value="h2">Heading 2</option>
+                                                <option value="h3">Heading 3</option>
+                                                <option value="h4">Heading 4</option>
+                                                <option value="h5">Heading 5</option>
+                                                <option value="h6">Heading 6</option>
+                                            </select>
                                         </div>
-                                        <div id="italic_icon" class="editor_tool_div_icons italic_icon" title="Italic" data-command="italic">
-                                            <i class="fas fa-italic fa-fw"></i>
-                                        </div>
-                                        <div id="underline_icon" class="editor_tool_div_icons underline_icon" title="Underline" data-command="underline">
-                                            <i class="fas fa-underline fa-fw"></i>
-                                        </div>
-                                        <div id="strikethrough_icon" class="editor_tool_div_icons strikethrough_icon" title="Strike Through" data-command="strikeThrough">
-                                            <i class="fas fa-strikethrough fa-fw"></i>
-                                        </div>
-                                        <!-- <div id="color_icon" class="editor_tool_div_icons" title="Color" data-command="fontcolor">
-                                                <i class="fas fa-tint fa-fw"></i>
-                                        </div> -->
-                                        <div class="editor_tool_div_icons fore-wrapper" title="Font Color">
-                                            <i class="fas fa-font fa-fw" style="color:#F44336;"></i>
-                                            <div class="fore-palette">
+
+                                        <div class="editor_tool_div_icons_container">
+                                            <div class="editor_tool_div_icons tool_icons_click_js" title="Undo" data-command="undo">
+                                                <i class="fas fa-undo-alt fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons tool_icons_click_js" title="Redo" data-command="redo">
+                                                <i class="fas fa-redo-alt fa-fw"></i>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="editor_tool_div_icons_container">
-                                        <div class="editor_tool_div_icons upload_image upload_image_open_modal" title="Add Image">
-                                            <i class="far fa-image fa-fw"></i>
-
-                                            <div class="image_modal_container">
-                                                <div class="image_modal">
-                                                    <div class="image_modal_icons upload_image_desktop" title="Upload image from your device">
-                                                        <i class="fas fa-desktop fa-fw"></i>
-                                                    </div>
-                                                    <div class="image_modal_icons tool_icons_click_js" title="Add external image url" data-command="insertimage">
-                                                        <i class="fas fa-external-link-alt fa-fw"></i>
-                                                    </div>
-
+                                        <div class="editor_tool_div_icons_container">
+                                            <div id="bold_icon" class="editor_tool_div_icons bold_icon" title="Bold" data-command="bold">
+                                                <i class="fas fa-bold fa-fw"></i>
+                                            </div>
+                                            <div id="italic_icon" class="editor_tool_div_icons italic_icon" title="Italic" data-command="italic">
+                                                <i class="fas fa-italic fa-fw"></i>
+                                            </div>
+                                            <div id="underline_icon" class="editor_tool_div_icons underline_icon" title="Underline" data-command="underline">
+                                                <i class="fas fa-underline fa-fw"></i>
+                                            </div>
+                                            <div id="strikethrough_icon" class="editor_tool_div_icons strikethrough_icon" title="Strike Through" data-command="strikeThrough">
+                                                <i class="fas fa-strikethrough fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons fore-wrapper" title="Font Color">
+                                                <i class="fas fa-font fa-fw" style="color:#F44336;"></i>
+                                                <div class="fore-palette">
                                                 </div>
-                                                <div class="arrow-down-image"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="editor_tool_div_icons_container hidden-lg-down">
+                                            <div class="editor_tool_div_icons upload_image upload_image_open_modal" title="Add Image">
+                                                <i class="far fa-image fa-fw"></i>
+
+                                                <div class="image_modal_container">
+                                                    <div class="image_modal">
+                                                        <div class="image_modal_icons upload_image_desktop" title="Upload image from your device">
+                                                            <i class="fas fa-desktop fa-fw"></i>
+                                                        </div>
+                                                        <div class="image_modal_icons tool_icons_click_js" title="Add external image url" data-command="insertimage">
+                                                            <i class="fas fa-external-link-alt fa-fw"></i>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="arrow-down-image"></div>
+                                                </div>
+
+                                            </div>
+                                            <div class="editor_tool_div_icons tool_icons_click_js" title="Link" data-command="createlink">
+                                                <i class="fas fa-link fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons tool_icons_click_js" title="Unlink" data-command="unlink">
+                                                <i class="fas fa-unlink fa-fw"></i>
+                                            </div>
+                                            <div id="blockquote_icon" class="editor_tool_div_icons tool_icons_click_js" title="Quote" data-command="blockquote">
+                                                <i class="fas fa-quote-left fa-fw"></i>
+                                            </div>
+
+                                            <input type="file" id="upload_img_file" name="upload_img_file_name">
+
+                                        </div>
+
+                                        <div class="editor_tool_div_icons_container hidden-lg-down">
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Left Align" data-align="0" data-command="justifyLeft">
+                                                <i class="fas fa-align-left fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Center Align" data-align="1" data-command="justifyCenter">
+                                                <i class="fas fa-align-center fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Right Align" data-align="2" data-command="justifyRight">
+                                                <i class="fas fa-align-right fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Justify" data-align="3" data-command="justifyFull">
+                                                <i class="fas fa-align-justify fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Indent" data-command="indent">
+                                                <i class="fas fa-indent fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Outdent" data-command="outdent">
+                                                <i class="fas fa-outdent fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Unordered List" data-command="insertUnorderedList">
+                                                <i class="fas fa-list-ul fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Ordered List" data-command="insertOrderedList">
+                                                <i class="fas fa-list-ol fa-fw"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tools_rhs">
+                                        <div class="editor_tool_div_icons_container">
+                                            <div id="toggle_fullscreen" class="editor_tool_div_icons" title="Fullscreen">
+                                                <i class="fas fa-expand fa-fw"></i>
+                                            </div>
+                                            <div id="delete_content" class="editor_tool_div_icons" title="Discard">
+                                                <i class="far fa-trash-alt fa-fw"></i>
+                                            </div>
+                                            <div id="save_content" class="editor_tool_div_icons" title="Save">
+                                                <i class="fas fa-save fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons" title="Publish">
+                                                <i class="fas fa-paper-plane fa-fw"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  End of editor tools 1 -->
+
+                                <!--  Start of editor tools 2 -->
+                                <div class="editor_tools hidden-xl-up">
+                                    <div class="tools_lhs">
+                                        <div class="editor_tool_div_icons_container" style="border-left: 1px solid #DBDBDB;">
+                                            <div class="editor_tool_div_icons upload_image upload_image_open_modal" title="Add Image">
+                                                <i class="far fa-image fa-fw"></i>
+
+                                                <div class="image_modal_container">
+                                                    <div class="image_modal">
+                                                        <div class="image_modal_icons upload_image_desktop" title="Upload image from your device">
+                                                            <i class="fas fa-desktop fa-fw"></i>
+                                                        </div>
+                                                        <div class="image_modal_icons tool_icons_click_js" title="Add external image url" data-command="insertimage">
+                                                            <i class="fas fa-external-link-alt fa-fw"></i>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="arrow-down-image"></div>
+                                                </div>
+
+                                            </div>
+                                            <div class="editor_tool_div_icons tool_icons_click_js" title="Link" data-command="createlink">
+                                                <i class="fas fa-link fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons tool_icons_click_js" title="Unlink" data-command="unlink">
+                                                <i class="fas fa-unlink fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons tool_icons_click_js" title="Quote" data-command="blockquote">
+                                                <i class="fas fa-quote-left fa-fw"></i>
                                             </div>
 
                                         </div>
-                                        <div class="editor_tool_div_icons tool_icons_click_js" title="Link" data-command="createlink">
-                                            <i class="fas fa-link fa-fw"></i>
-                                        </div>
-                                        <div class="editor_tool_div_icons tool_icons_click_js" title="Unlink" data-command="unlink">
-                                            <i class="fas fa-unlink fa-fw"></i>
-                                        </div>
-                                        <div id="blockquote_icon" class="editor_tool_div_icons tool_icons_click_js" title="Quote" data-command="blockquote">
-                                            <i class="fas fa-quote-left fa-fw"></i>
-                                        </div>
 
-                                        <input type="file" id="upload_img_file" name="upload_img_file_name">
+                                        <div class="editor_tool_div_icons_container">
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Left Align" data-align="0" data-command="justifyLeft">
+                                                <i class="fas fa-align-left fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Center Align" data-align="1" data-command="justifyCenter">
+                                                <i class="fas fa-align-center fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Right Align" data-align="2" data-command="justifyRight">
+                                                <i class="fas fa-align-right fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Justify" data-align="3" data-command="justifyFull">
+                                                <i class="fas fa-align-justify fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Indent" data-command="indent">
+                                                <i class="fas fa-indent fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Outdent" data-command="outdent">
+                                                <i class="fas fa-outdent fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Unordered List" data-command="insertUnorderedList">
+                                                <i class="fas fa-list-ul fa-fw"></i>
+                                            </div>
+                                            <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Ordered List" data-command="insertOrderedList">
+                                                <i class="fas fa-list-ol fa-fw"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tools_rhs">
 
                                     </div>
 
-                                    <div class="editor_tool_div_icons_container hidden-md-down">
-                                        <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Left Align" data-align="0" data-command="justifyLeft">
-                                            <i class="fas fa-align-left fa-fw"></i>
-                                        </div>
-                                        <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Center Align" data-align="1" data-command="justifyCenter">
-                                            <i class="fas fa-align-center fa-fw"></i>
-                                        </div>
-                                        <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Right Align" data-align="2" data-command="justifyRight">
-                                            <i class="fas fa-align-right fa-fw"></i>
-                                        </div>
-                                        <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Justify" data-align="3" data-command="justifyFull">
-                                            <i class="fas fa-align-justify fa-fw"></i>
-                                        </div>
-                                        <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Indent" data-command="indent">
-                                            <i class="fas fa-indent fa-fw"></i>
-                                        </div>
-                                        <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Outdent" data-command="outdent">
-                                            <i class="fas fa-outdent fa-fw"></i>
-                                        </div>
-                                        <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Unordered List" data-command="insertUnorderedList">
-                                            <i class="fas fa-list-ul fa-fw"></i>
-                                        </div>
-                                        <div class="editor_tool_div_icons align_icons tool_icons_click_js" title="Ordered List" data-command="insertOrderedList">
-                                            <i class="fas fa-list-ol fa-fw"></i>
-                                        </div>
-                                    </div>
                                 </div>
-
-                                <div id="tools_rhs">
-                                    <div class="editor_tool_div_icons_container">
-                                        <div id="toggle_fullscreen" class="editor_tool_div_icons" title="Fullscreen">
-                                            <i class="fas fa-expand fa-fw"></i>
-                                        </div>
-                                        <div id="delete_content" class="editor_tool_div_icons" title="Discard">
-                                            <i class="far fa-trash-alt fa-fw"></i>
-                                        </div>
-                                        <div id="save_content" class="editor_tool_div_icons" title="Save">
-                                            <i class="fas fa-save fa-fw"></i>
-                                        </div>
-                                        <div class="editor_tool_div_icons" title="Publish">
-                                            <i class="fas fa-paper-plane fa-fw"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <!--  End of editor tools 2 -->
                             </div>
+                            <!-- End of Editor Tools Container -->
 
-                            <div id="editor_input" class="textarea" contenteditable="true" data-placeholder2="Add content" tabindex="2" style=""></div>
+                            <div id="editor_input" contenteditable="true" data-placeholder2="Add content" tabindex="2" style=""></div>
                             <!-- NO empty spaces. Important!  -->
 
 
@@ -329,16 +337,10 @@
                 <div class="tool_icons tool_icons_click_js" title="Right Align" data-command="justifyRight">
                     <i class="fas fa-align-right fa-fw"></i>
                 </div>
-               <!--  <div class="tool_icons tool_icons_click_js" title="Link" data-command="createlink">
-                    <i class="fas fa-link fa-fw"></i>
-                </div>
-                <div class="tool_icons tool_icons_click_js" title="Link" data-command="unlink">
-                    <i class="fas fa-unlink fa-fw"></i>
-                </div> -->
                 <div class="tool_icons delete_image" title="Delete">
                     <i class="fas fa-trash-alt fa-fw"></i>
                 </div>
-                
+
             </div>
 
             <div class="tools_bottom_row">
@@ -351,7 +353,7 @@
                 <div class="image_hw_input_div" title="Height">
                     <input type="number" placeholder="Image height" class="input_image_height">
                 </div>
-               
+
             </div>
 
         </div>
